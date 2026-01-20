@@ -1,0 +1,23 @@
+# Version control
+.git/
+.gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+
+# Data and results (mount these as volumes instead)
+datasets/
+results/
+
+# Editor/IDE files
+.vscode/
+.idea/
+
+# Docker related
+Dockerfile
+README_DOCKER.md
+implementation_plan.md

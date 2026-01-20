@@ -1,0 +1,20 @@
+目標 : setup isolated environment for reproducing partial results from TD-JEPA
+我的 platform : Windows 11
+他人推薦的 reproduction platform : Linux
+我常用的容器化 app : Docker
+TD-JEPA codebase : https://github.com/facebookresearch/td_jepa.git
+我的 fork : https://github.com/kui-yuan/td-jepa.git
+偏好 :
+	- minimal dependency
+	- 用 uv manage dependency
+
+---
+
+狀態 : image built successfully
+追加目標 : perform additional experiments needing code modification
+
+---
+
+我試著按照 README.md，在 container 中下載 data，但程式似乎自行中斷了。
+
+---
