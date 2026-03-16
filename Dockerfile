@@ -1,15 +1,14 @@
-FROM ubuntu:24.04
-
 # ==============
 # === common ===
 # ==============
 
-# volume
+FROM ubuntu:24.04
+
 VOLUME [ "/data" ]
 
 # environment variables
-#   TZ: timezone
-#   Path: add '/root/.local/bin' into system path
+#   TZ: timezone (for Antigravity)
+#   Path: add '/root/.local/bin' into system path (for Oh My Posh)
 ENV TZ=Asia/Taipei \
     PATH=/root/.local/bin:$PATH
 
@@ -26,7 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-    # Oh My Posh: theme
+# Oh My Posh: theme
 RUN curl -s https://ohmyposh.dev/install.sh | bash -s
 RUN printf '\n%s\n' 'eval "$(oh-my-posh init bash --config emodipt-extend)"' >> ~/.bashrc
 
@@ -43,11 +42,12 @@ RUN printf '\n%s\n%s\n%s\n' \
     'alias rm-pycache="pyclear"' \
     >> ~/.bashrc
 
-WORKDIR /workspace
 
 # ===============
 # === project ===
 # ===============
+
+WORKDIR /td-jepa
 
 # uv: Python virtual environment
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
@@ -62,9 +62,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/kui-yuan/td-jepa.git /workspace
+RUN git clone https://github.com/kui-yuan/td-jepa.git /td-jepa
 
-# install dependencies
+# setup Python virtual environment
 # RUN uv sync --all-extras
 
 # default command
